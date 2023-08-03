@@ -11,6 +11,7 @@ class ActionsList():
             for req in request:
                 results.append(await self.execute(robot, req))
             return results
+        print("Processing action", request)
         try:
             name, args = request[ 'name' ], request[ 'args' ]
             return await self._actions[ name ] ( robot, **args )

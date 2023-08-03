@@ -1,8 +1,8 @@
-from .actions import *
+from .action import *
 import machine as _machine
 import uasyncio as _asyncio
 
-class PhysicalActions(ActionsList):
+class PhysicalActionsList(ActionsList):
     def __init__(self):
         super().__init__()
 
