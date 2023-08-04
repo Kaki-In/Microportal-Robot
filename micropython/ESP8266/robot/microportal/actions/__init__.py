@@ -7,6 +7,8 @@ class RobotActionsList(ActionsList):
         self._phy = PhysicalActionsList()
         self.addActionListener("executeAction", self.executeAction)
     
-    async def executeAction(self, robot, actionName, args):
-        return await self._phy.execute(robot, {"name":actionName, "args":args})
+    async def executeAction(self, robot, actionName, args, reqid):
+        result = await self._phy.execute(robot, {"name":actionName, "args":args})
+        request = robot.createRequest("markAsProcessed", reqid=reqid, result=result)
+        return request
 

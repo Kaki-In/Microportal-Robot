@@ -1,6 +1,7 @@
 import uasyncio as _asyncio
 from uwebsockets import client as _websocket
 import ujson as _json
+import usocket as _socket
 from .actions import *
 
 class MicroportalConnection():
@@ -38,7 +39,10 @@ class MicroportalConnection():
     async def main(self):
         await self.initConnection()
         while True:
-            request = await self.recv()
+            try:
+                request = await self.recv()
+            except _socket.timeout:
+                pass
             result = await self.LIST.execute(self, request)
             await self.send(result)
     
