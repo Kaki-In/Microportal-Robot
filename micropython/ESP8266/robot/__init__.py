@@ -31,3 +31,4 @@ class MicroportalRobot():
                 await _asyncio.sleep(10)
             finally:
                 await self._conn.close()
+                print("disconnected")
